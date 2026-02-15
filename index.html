@@ -8,6 +8,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 
+
 body{
 height:100vh;
 background:linear-gradient(135deg,#ff9a9e,#fad0c4,#d4a5ff,#a18cd1);
@@ -16,7 +17,8 @@ animation:fondo 12s ease infinite;
 display:flex;
 justify-content:center;
 align-items:center;
-overflow:hidden;
+overflow-x:hidden;
+overflow-y:auto;
 }
 
 @keyframes fondo{
@@ -265,15 +267,84 @@ cursor:pointer;
 
 /* RESPONSIVE */
 @media(max-width:900px){
-.contentArea{flex-direction:column;}
-.grid,.videoPanel{width:100%;}
-.titleArea{flex-direction:column;}
+/* 🔥 BOTÓN VOLVER MÁS VISIBLE EN CELULAR */
+.topBtn{
+position:fixed;         /* se queda fijo arriba */
+top:15px;
+right:15px;
+padding:12px 22px;
+font-size:16px;
+background:linear-gradient(135deg,#ff2e63,#ff6b81);
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+border-radius:30px;
+z-index:1000;
+animation:pulseBtn 1.8s infinite;
+}
+
+/* Animación suave */
+@keyframes pulseBtn{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+body{
+overflow-y:auto; /* 🔥 permitir scroll vertical */
+}
+
+.page{
+height:auto;      /* 🔥 permitir que crezca */
+min-height:100vh; 
+}
+
+.contentArea{
+flex-direction:column;
+}
+
+.grid,.videoPanel{
+width:100%;
+}
+
+.titleArea{
+flex-direction:column;
+}
+
+/* 🔥 HACER CORAZÓN MÁS PEQUEÑO */
+.heart-wrapper{
+width:90px;
+height:85px;
+}
+
+.heart{
+width:60px;
+height:60px;
+}
+
+.heart::before,
+.heart::after{
+width:60px;
+height:60px;
+}
+
+.heart::before{
+top:-30px;
+}
+
+.heart::after{
+left:30px;
+}
+
+.heart-text{
+font-size:8px;
+width:70px;
+}
+
 .pullContainer{
 position:relative;
 top:auto;
 transform:none;
 margin-top:20px;
 }
+
 }
 
 
@@ -296,6 +367,20 @@ transform:translate(var(--x), var(--y)) scale(1.5);
 opacity:0;
 }
 }
+
+
+.volverBtn{
+position:fixed;
+top:15px;
+right:15px;
+padding:12px 22px;
+font-size:16px;
+background:linear-gradient(135deg,#ff2e63,#ff6b81);
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+border-radius:30px;
+z-index:1000;
+animation:pulseBtn 1.8s infinite;
+}
 </style>
 </head>
 <body>
@@ -311,7 +396,7 @@ Tengo algo especial para ti...
 
 <!-- PAGE 2 -->
 <div class="page page2 hidden" id="page2">
-<button class="topBtn" onclick="goToPage1()">Volver 💖</button>
+<button class="topBtn volverBtn" onclick="goToPage1()">Volver 💖</button>
 
 <div class="titleArea">
 <h1>Feliz San Valentín 💘</h1>
